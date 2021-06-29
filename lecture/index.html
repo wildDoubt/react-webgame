@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class GuGuDan extends React.Component {
+        state = {
+            first: Math.ceil(Math.random() * 9),
+            second: Math.ceil(Math.random() * 9),
+            value: '',
+            result: '',
+        }
+
+        onSubmit = (e) => {
+            e.preventDefault()
+            if (parseInt(this.state.value) === this.state.first * this.state.second) {
+                this.setState((prevState) => {
+                    // setState는 비동기라서 예상하지 못한 value가 나올 수 있다.
+                    // this.state 대신 prevState를 사용
+                    return {
+                        first: Math.ceil(Math.random() * 9),
+                        second: Math.ceil(Math.random() * 9),
+                        value: '',
+                        result: '정답: ' + prevState.value,
+                    }
+                })
+            } else {
+                this.setState({
+                    result: '오답',
+                })
+            }
+            this.input.focus() // 포커스 유지
+        }
+
+        onChange = (e) => {
+            this.setState({value: e.target.value})
+        }
+
+        input;
+
+        render() {
+            console.log('렌더링')// setState를 할 때마다 렌더링이 일어난다.
+            return (
+                <>
+                    <div>{this.state.first} X {this.state.second} = ?</div>
+
+                    <input ref={(c)=>{this.input = c;}} type="number" value={this.state.value} onChange={this.onChange}/>
+                    <button onClick={this.onSubmit}>입력!</button>
+
+                    <div>{this.state.result}</div>
+                </>
+            );
+        }
+    }
+</script>
+<script type="text/babel">
+    ReactDOM.render(<GuGuDan/>, document.querySelector('#root'));
+</script>
+</body>
+</html>
