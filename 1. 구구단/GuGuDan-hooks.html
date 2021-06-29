@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const GuGuDan = () => {
+        const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9))
+        const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9))
+        const [value, setValue] = React.useState = React.useState('')
+        const [result, setResult] = React.useState = React.useState('')
+        const inputRef = React.useRef(null)
+
+        const onChangeInput = (e)=>{
+            setValue(e.target.value)
+        }
+
+        const onSubmitForm = (e)=>{
+            e.preventDefault()
+            if (parseInt(value) === first * second) {
+                setResult('정답: ' + value)
+                setFirst(Math.ceil(Math.random() * 9))
+                setSecond(Math.ceil(Math.random() * 9))
+                setValue('')
+            } else {
+                setResult('오답')
+            }
+            inputRef.current.focus() // 포커스 유지
+        }
+
+        return (
+            <>
+                <div>{first} X {second} = ?</div>
+                <input ref={inputRef} value={value} onChange={onChangeInput}/>
+                <button onClick={onSubmitForm}>입력!</button>
+                <div id="result">{result}</div>
+            </>
+        )
+
+    }
+</script>
+<script type="text/babel">
+    ReactDOM.render(<GuGuDan/>, document.querySelector('#root'));
+</script>
+</body>
+</html>
