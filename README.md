@@ -1,8 +1,11 @@
 # react-webgame
+
 ## 기본 환경 설정
+
 ### npm 초기화
+
 1. `npm init`
-   
+
 2. `npm i react react-dom`
 
 3. `npm i -D webpack webpack-cli`
@@ -13,6 +16,16 @@
 
 6. 지원할 브라우저 설정은 [Browerslist][browserslist]에서 확인가능
 
+7. 웹팩 핫 리로딩
+
+- `npm i react-refresh @pmmmwh/react-refresh-webpack-plugin -D`
+- `npm i - D webpack-dev-server`
+    ```json
+    "scripts": {
+        "dev": "webpack serve --env development"
+    },
+    ```
+    이렇게 변경
 ```json
   "dependencies": {
     "react": "^17.0.2",
@@ -30,7 +43,9 @@
 
 - dependencies: 실제 서비스할 때 사용하는 라이브러리
 - devDependencies: 개발할 때만 필요한 라이브러리
+
 ### babel & webpack 설정
+
 `npm i -D @babel/core @babel/preset-env @babel/preset-react`
 
 `npm i babel-loader`
