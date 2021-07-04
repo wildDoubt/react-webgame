@@ -32,7 +32,7 @@ class NumberBaseball extends Component {
 
     onSubmitForm = (e) => {
         e.preventDefault();
-        if (this.state.tries.length >= 2) {
+        if (this.state.tries.length >= 9) {
             alert(`10번 넘게 틀려서 실패! 답은 ${this.state.answer.join(',')}입니다.`)
             alert('게임을 다시 시작합니다.')
             this.initState();
