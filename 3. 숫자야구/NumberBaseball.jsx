@@ -38,10 +38,12 @@ class NumberBaseball extends Component {
             this.initState();
         } else {
             if (this.state.value === this.state.answer.join('')) {
-                this.setState({
-                    result: '홈런!',
-                    // push를 사용하면 react에서 바뀌지 않았다고 판단해서 render하지 않음.
-                    tries: [...this.state.tries, {try: this.state.value, result: '홈런!'}],
+                this.setState((prevState)=>{
+                    return {
+                        result: '홈런!',
+                        // push를 사용하면 react에서 바뀌지 않았다고 판단해서 render하지 않음.
+                        tries: [...prevState.tries, {try: this.state.value, result: '홈런!'}],
+                    }
                 });
                 alert(`축하합니다. ${this.state.tries.length+1}번 만에 맞추셨습니다!`);
                 alert('게임을 다시 시작합니다.')
@@ -59,9 +61,11 @@ class NumberBaseball extends Component {
                     }
                 });
                 const temp_result = `${strike} 스트라이크 ${ball} 볼`;
-                this.setState({
-                    result: temp_result,
-                    tries: [...this.state.tries, {try: this.state.value, result: temp_result}],
+                this.setState((prevState)=>{
+                    return {
+                        result: temp_result,
+                        tries: [...prevState.tries, {try: this.state.value, result: temp_result}],
+                    }
                 });
             }
         }
