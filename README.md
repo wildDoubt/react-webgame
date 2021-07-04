@@ -1,4 +1,5 @@
 # react-webgame
+인프런 [웹 게임을 만들며 배우는 React][lecture]를 참고하여 만들었습니다. 
 
 ## 기본 환경 설정
 
@@ -56,3 +57,4 @@
 - babel-loader: babel이랑 webpack이랑 연결
 
 [browserslist]: https://github.com/browserslist/browserslist
+[lecture]: https://www.inflearn.com/course/web-game-react
