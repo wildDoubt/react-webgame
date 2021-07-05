@@ -1,10 +1,12 @@
-import React, { memo } from 'react';
+const React = require('react')
+const {memo} = React;
 
-const Try = memo(({tryInfo}) => {
+const Try = memo(({tryInfo, index}) => {
     return (
         <li>
-            <div>{tryInfo.try}</div>
-            <div>{tryInfo.result}</div>
+            <b>{index+1}번 째 시도</b>
+            <br/>
+            {tryInfo.try}: {tryInfo.result}
         </li>
     );
 });

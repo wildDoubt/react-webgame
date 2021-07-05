@@ -1,5 +1,6 @@
 const path = require('path')
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+// process.env.NODE_ENV = 'production' // 배포 모드
 
 module.exports = {
     name: 'baseball-setting',
