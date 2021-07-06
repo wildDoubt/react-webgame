@@ -9,6 +9,8 @@ function ResponseCheck() {
     const timeout = useRef();
     const start_time = useRef();
     const end_time = useRef();
+    const reset_button = useRef();
+    const response_button = useRef();
 
     const onClickScreen = useCallback((e) => {
         if (state === 'waiting') {
@@ -27,17 +29,21 @@ function ResponseCheck() {
         } else if (state === 'now') {
             // 반응속도 체크
             end_time.current = Date.now();
-            setState('waiting');
+            setState('result');
             setResult((prevResult) => ([
                 ...prevResult,
                 end_time.current - start_time.current,
             ]));
-            setMessage('클릭해서 시작하세요.')
-            console.log(result)
+            setMessage('결과')
+        } else if (state === 'result') {
+            setState('waiting');
+            setMessage('클릭해서 시작하세요.');
         }
     })
 
     const onReset = () => {
+        setState('waiting');
+        setMessage('클릭해서 시작하세요.')
         setResult([]);
     }
 
@@ -47,23 +53,32 @@ function ResponseCheck() {
             : <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
     })
 
-    return (
-        <>
-            <div>
-                <p>{result.length===0 ? null : `${result[result.length - 1]}ms`}</p>
-            </div>
-            <button
-                id="screen"
-                className={state}
-                onClick={onClickScreen}>
-                {message}
-            </button>
-            <br/>
-            <button
+    const renderResetButton = useCallback(() => {
+        return state === 'result'
+            ? <button
+                id="resetButton"
+                ref={reset_button}
                 onClick={onReset}>
                 RESET
             </button>
-            {renderAverage()}
+            : null
+    })
+
+    return (
+        <>
+            <div
+                style={{display: "flex"}}>
+                <p style={{margin: "auto"}}>{result.length === 0 ? 'ㅤ' : `${result[result.length - 1]}ms`}</p>
+            </div>
+            <button
+                ref={response_button}
+                id="screen"
+                className={state}
+                onClick={onClickScreen}>
+                {message}<br/>{renderAverage()}
+            </button>
+            {renderResetButton()}
+
         </>
     )
 }

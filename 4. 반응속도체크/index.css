@@ -1,0 +1,42 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#screen {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    margin: 10px auto;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+}
+
+#screen.waiting {
+    background-color: rgb(104, 160, 180);
+}
+
+#screen.ready {
+    background-color: rgb(169, 83, 68);
+    color: white;
+}
+
+#screen.now {
+    background-color: rgb(196, 232, 152);
+}
+
+#screen.result {
+    background-color: rgb(196, 232, 152);
+}
+
+#resetButton{
+    display: flex;
+    margin: 10px auto;
+}
