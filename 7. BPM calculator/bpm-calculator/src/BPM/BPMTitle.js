@@ -1,11 +1,11 @@
-import { Typography } from 'antd';
+import {Typography} from 'antd';
+
 const {Title} = Typography;
 
-function BPMTitle(style){
+function BPMTitle({style}) {
     return (
-        <>
-            <Title style={style}>BPM Calculator</Title>
-        </>
+        <Title style={style}>BPM Calculator</Title>
     )
 }
+
 export default BPMTitle;

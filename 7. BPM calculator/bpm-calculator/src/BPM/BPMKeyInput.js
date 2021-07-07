@@ -9,15 +9,13 @@ function BPMKeyInput({keyValue}) {
     }
 
     return (
-        <>
-            <Input
-                {...value}
-                style={{width:120,textAlign:'center'}}
-                maxLength={1}
-                placeholder="Choose a key"
-                defaultValue={keyValue}
-                onChange={onChangeInput}/>
-        </>
+        <Input
+            {...value}
+            style={{width: 120, textAlign: 'center'}}
+            maxLength={1}
+            placeholder="Choose a key"
+            defaultValue={keyValue}
+            onChange={onChangeInput}/>
     )
 }
 

@@ -1,9 +1,20 @@
+import {Input, InputNumber} from 'antd';
+import React, {useState, useRef} from 'react';
 
-function BPMCount(){
+function BPMCount({disabled, valueInfo, setValue}) {
+    const onChangeInputNumber = (value) => {
+        setValue({value: value});
+    }
+
     return (
-        <>
-            결과
-        </>
+        <InputNumber
+            disabled={disabled}
+            min={valueInfo.minValue}
+            max={valueInfo.maxValue}
+            maxLength={2}
+            value={valueInfo.value}
+            onChange={onChangeInputNumber}/>
     )
 }
+
 export default BPMCount;
