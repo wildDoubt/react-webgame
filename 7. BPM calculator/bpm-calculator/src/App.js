@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Row, Col} from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
@@ -13,7 +13,11 @@ const style = {
     color:'#DFDFDF',
 };
 
-const App = () => (
+const App = () => {
+    const [key1, setKey1] = useState('Z');
+    const [key2, setKey2] = useState('X');
+
+    return(
     <>
         <Row>
             <Col
@@ -28,17 +32,17 @@ const App = () => (
             </Col>
         </Row>
         <Row justify="center">
-            <Col span={4} style={style}><BPMKeyInput keyValue='Z'/></Col>
-            <Col span={4} style={style}><BPMKeyInput keyValue='X'/></Col>
+            <Col span={4} style={style}><BPMKeyInput keyValue={key1} setKey={setKey1}/></Col>
+            <Col span={4} style={style}><BPMKeyInput keyValue={key2} setKey={setKey2}/></Col>
         </Row>
         <Row>
             <Col
                 span={24}
                 style={style}>
-                <BPMForm style={style}/>
+                <BPMForm style={style} key1={key1} key2={key2}/>
             </Col>
         </Row>
     </>
-);
+)};
 
 export default App;

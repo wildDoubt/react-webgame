@@ -1,7 +1,10 @@
 body{
   background: #282c34;
 }
-
+input:disabled {
+  background-color: #282c34;
+  opacity: 1;
+}
 .App {
   text-align: center;
 }

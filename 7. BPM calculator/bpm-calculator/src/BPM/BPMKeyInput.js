@@ -1,16 +1,15 @@
 import {Input} from 'antd';
-import React, {useState} from 'react';
+import React from 'react';
 
-function BPMKeyInput({keyValue}) {
-    const [value, setValue] = useState(keyValue)
+function BPMKeyInput({keyValue, setKey}) {
 
     const onChangeInput = (event) => {
-        setValue(event.target.value);
+        setKey(event.target.value.toUpperCase())
     }
 
     return (
         <Input
-            {...value}
+            value={keyValue}
             style={{width: 120, textAlign: 'center'}}
             maxLength={1}
             placeholder="Choose a key"
