@@ -67,3 +67,5 @@
 - Hook
   - useEffect
   - useLayoutEffect
+  - useMemo
+  - useCallback: 자식 컴포넌트에게 함수를 넘길 때 사용해야 계속 렌더링이 일어나지 않는다.

@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDom = require('react-dom');
 
-const RSPHook = require('./RSPHook').default;
+const Lotto = require('./Lotto').default;
 
-ReactDom.render(<RSPHook/>, document.querySelector('#root'))
+ReactDom.render(<Lotto/>, document.querySelector('#root'))
