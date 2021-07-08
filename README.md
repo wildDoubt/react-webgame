@@ -58,3 +58,9 @@
 
 [browserslist]: https://github.com/browserslist/browserslist
 [lecture]: https://www.inflearn.com/course/web-game-react
+
+### React.Component Lifecycle
+- 클래스
+  1. constructor -> render -> ref -> componentDidMount
+  2. setState/props 바뀌면-> shouldComponentUpdate(true) -> render -> componentDidUpdate
+  3. 부모 객체가 자식 객체를 없애면 -> componentWillUnmount -> 소멸
