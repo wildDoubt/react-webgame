@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDom = require('react-dom');
 
-const RSPClass = require('./RSPClass').default;
+const RSPHook = require('./RSPHook').default;
 
-ReactDom.render(<RSPClass/>, document.querySelector('#root'))
+ReactDom.render(<RSPHook/>, document.querySelector('#root'))
