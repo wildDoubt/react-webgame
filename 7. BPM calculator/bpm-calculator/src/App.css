@@ -1,8 +1,7 @@
 body{
-  background: #282c34;
+  background: #c0c0c0;
 }
 input:disabled {
-  background-color: #282c34;
   opacity: 1;
 }
 .App {

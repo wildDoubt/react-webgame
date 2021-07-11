@@ -37,6 +37,8 @@ function BPMForm({style, key1, key2}) {
             setKeyCount((prevKeyCount) =>
                 (prevKeyCount + 1)
             )
+            const temp_time = (keyCount * 60000 / (Date.now() - start_time.current));
+            result_bpm.current = isNaN(temp_time)?0:temp_time;
         }
 
     }
@@ -77,7 +79,8 @@ function BPMForm({style, key1, key2}) {
             <BPMCount
                 disabled={disabled}
                 valueInfo={inputValue}
-                setValue={setInputValue}/>
+                setValue={setInputValue}
+                style={style}/>
             <br/>
             <Button
                 onClick={onClickStartButton}

@@ -1,6 +1,6 @@
 import {InputNumber} from 'antd';
 
-function BPMCount({disabled, valueInfo, setValue}) {
+function BPMCount({style,disabled, valueInfo, setValue}) {
 
     const onChangeInputNumber = (value) => {
         setValue((prevValue) => (
@@ -22,8 +22,9 @@ function BPMCount({disabled, valueInfo, setValue}) {
                 value={valueInfo.value}
                 style={
                     {
-                        color: 'white',
+                        color: style.color,
                         width: '50px',
+                        marginLeft:'10px',
                     }
                 }
                 onChange={onChangeInputNumber}/>
