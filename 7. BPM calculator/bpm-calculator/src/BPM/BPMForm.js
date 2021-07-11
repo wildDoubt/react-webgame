@@ -1,5 +1,5 @@
 import {Button, Slider} from 'antd';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import BPMCount from "./BPMCount";
 import Title from "antd/es/typography/Title";
 import BPMResult from "./BPMResult";
@@ -9,9 +9,20 @@ function BPMForm({style, key1, key2}) {
     const [disabled, setDisabled] = useState(false);
     const [keyCount, setKeyCount] = useState(0)
     const [recorded, setRecorded] = useState(false);
+    const [results, setResults] = useState([]);
+
     const start_time = useRef();
     const end_time = useRef();
     const result_bpm = useRef(0.0);
+
+
+
+    useEffect(()=>{
+        setResults((prevResults)=>(
+            [...prevResults, result_bpm.current]
+            )
+        );
+    }, [result_bpm.current]);
 
     const onKeyPress = (e) => {
         const keyPress = String.fromCharCode(e.charCode).toUpperCase();
@@ -55,6 +66,7 @@ function BPMForm({style, key1, key2}) {
     const onClickStartButton = () => {
         setDisabled(true);
         setRecorded(true);
+        setResults([]);
     }
 
     return (
@@ -86,7 +98,7 @@ function BPMForm({style, key1, key2}) {
                 onClick={onClickStartButton}
                 style={{margin: '10px auto'}}
                 onKeyPress={onKeyPress}>시작</Button>
-            <BPMResult style={style} result={result_bpm.current}/>
+            <BPMResult style={style} results={results}/>
         </>
     )
 }
