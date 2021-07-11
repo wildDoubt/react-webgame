@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch} from "antd";
 
 function MyHeader({setStyle}) {
-    const body = document.getElementsByTagName("body")[0];
+    const body = document.body;
 
     const onChange = (e) => {
         if (e) {
