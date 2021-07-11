@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDom = require('react-dom');
 
-const Lotto = require('./Lotto').default;
+import TicTacToe from './TicTacToe'
 
-ReactDom.render(<Lotto/>, document.querySelector('#root'))
+ReactDom.render(<TicTacToe/>, document.querySelector('#root'))
