@@ -24,8 +24,8 @@ function BPMForm({style, key1, key2}) {
         );
     }, [result_bpm.current]);
 
-    const onKeyPress = (e) => {
-        const keyPress = String.fromCharCode(e.charCode).toUpperCase();
+    const onKeyDown = (e) => {
+        const keyDown = e.key.toUpperCase();
 
         if (keyCount === 0) {
             if (recorded === true) {
@@ -44,7 +44,7 @@ function BPMForm({style, key1, key2}) {
             return;
         }
 
-        if ((keyPress === key1 || keyPress === key2) && recorded === true) {
+        if ((keyDown === key1 || keyDown === key2) && recorded === true) {
             setKeyCount((prevKeyCount) =>
                 (prevKeyCount + 1)
             )
@@ -97,7 +97,7 @@ function BPMForm({style, key1, key2}) {
             <Button
                 onClick={onClickStartButton}
                 style={{margin: '10px auto'}}
-                onKeyPress={onKeyPress}>시작</Button>
+                onKeyDown={onKeyDown}>시작</Button>
             <BPMResult style={style} results={results}/>
         </>
     )
