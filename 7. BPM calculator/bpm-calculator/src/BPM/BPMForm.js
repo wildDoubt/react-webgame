@@ -1,5 +1,5 @@
 import {Button, Slider} from 'antd';
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import BPMCount from "./BPMCount";
 import Title from "antd/es/typography/Title";
 import BPMResult from "./BPMResult";
@@ -15,18 +15,8 @@ function BPMForm({style, key1, key2}) {
     const end_time = useRef();
     const result_bpm = useRef(0.0);
 
-
-
-    useEffect(()=>{
-        setResults((prevResults)=>(
-            [...prevResults, result_bpm.current]
-            )
-        );
-    }, [result_bpm.current]);
-
-    const onKeyDown = (e) => {
+    const _handleKeyDown = useCallback((e)=>{
         const keyDown = e.key.toUpperCase();
-
         if (keyCount === 0) {
             if (recorded === true) {
                 // 기록 시작
@@ -41,6 +31,8 @@ function BPMForm({style, key1, key2}) {
             setRecorded(false);
             setDisabled(false);
             setKeyCount(0);
+
+
             return;
         }
 
@@ -51,8 +43,22 @@ function BPMForm({style, key1, key2}) {
             const temp_time = (keyCount * 60000 / (Date.now() - start_time.current));
             result_bpm.current = isNaN(temp_time)?0:temp_time;
         }
+    },[recorded, keyCount])
 
-    }
+
+    useEffect(()=>{
+        setResults((prevResults)=>(
+            [...prevResults, result_bpm.current]
+            )
+        );
+    }, [result_bpm.current]);
+
+    useEffect(()=>{
+        document.addEventListener("keydown",_handleKeyDown);
+        return ()=>{
+            document.removeEventListener("keydown",_handleKeyDown);
+        }
+    },[_handleKeyDown])
 
     const onChangeSlider = (value) => {
         setInputValue((prevInputValue) => (
@@ -62,6 +68,8 @@ function BPMForm({style, key1, key2}) {
             }
         ));
     }
+
+
 
     const onClickStartButton = () => {
         setDisabled(true);
@@ -97,7 +105,7 @@ function BPMForm({style, key1, key2}) {
             <Button
                 onClick={onClickStartButton}
                 style={{margin: '10px auto'}}
-                onKeyDown={onKeyDown}>시작</Button>
+                >시작</Button>
             <BPMResult style={style} results={results}/>
         </>
     )
